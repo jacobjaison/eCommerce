@@ -12,3 +12,5 @@ This project is create eCommerce website for different category of technology pr
 - Customer Payment Solution of Purchased Products
 - Customer Order History
 # Routes
+
+to be defined
