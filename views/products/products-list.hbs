@@ -1,3 +1,13 @@
-<div>
-    This is Products List
+<h1>Product's List</h1>
+<div class="row">
+{{#each products}}
+    <div class="card col-3" style="width: 18rem;">
+        <img src="{{this.prodImage}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{this.prodName}}</h5>
+            <p class="card-text">Price : {{this.prodPrice}}</p> 
+            <a href="/products/{{this.id}}/edit" class="btn btn-primary">Edit Products</a>        
+        </div>
+    </div>   
+{{/each}}
 </div>

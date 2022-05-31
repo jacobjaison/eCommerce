@@ -10,6 +10,10 @@ const prodSchema = new Schema ({
         required:true,
         maxlength:200
     },
+    prodCategory : {
+        type:String,
+        required:true
+    },
     prodImage : {
         type: String,
         required:true,
