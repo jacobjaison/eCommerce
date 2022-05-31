@@ -10,3 +10,10 @@ a {
 h1 {
   color: 15px;
 }
+
+.blockcontainer {
+  border-color: grey;
+  border-width: 5px;
+  border-style: solid;
+  
+}
