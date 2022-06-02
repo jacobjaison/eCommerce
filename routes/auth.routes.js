@@ -1,83 +1,60 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
-//const middleware = require("../middleware");
-//const updloader = require('../config/cloudinary.config');
+const upLoader = require('../config/cloudinary.config')
 const SALT_FACTOR = 12;
-
 const router = express.Router();
-
-
 // GET: display the signup form 
-
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
 })
 
-
 // POST: handle the signup logic
-router.post('/signup', async (req, res, next) => {
-  const { email, password } = req.body;
-  console.log(req.file);
-  if(!email || !password){
-    return res.render('auth/signup', {
-      errorMessage: "Credentials are mandatory!"
-    })
-  }
-
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
-  if(!regex.test(password)){
-    return res.render('auth/signup', {
-      errorMessage: "Password needs to have 8 char, including lower/upper case and a digit"
-    })
-  }
-
+router.post('/signup', upLoader.single('profilePic'), async (req, res, next) => {
   try {
-    const foundUser = await User.findOne({ email });
+    const { firstName, lastName, email, password, profilePic, addressLine1, addressLine2, couResidence, couCity, postalCode } = req.body;
+    console.log(firstName);
+    if (!email || !password) {
+      return res.render('auth/signup', {
+        errorMessage: "Credentials are mandatory!"
+      })
+    }
+    const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+    if (!regex.test(password)) {
+      return res.render('auth/signup', {
+        errorMessage: "Password needs to have 8 char, including lower/upper case and a digit"
+      })
+    }
 
-    if(foundUser){
+    const foundUser = await User.findOne({ email });
+    if (foundUser) {
       return res.render('auth/signup', {
         errorMessage: "Email already in use"
       })
     }
-
     const hashedPassword = bcrypt.hashSync(password, SALT_FACTOR);
     await User.create({
-      email, 
+      firstName,
+      lastName,
+      email,
       password: hashedPassword,
-      profilePic: req.file.path
-    })
+      profilePic : req.file.path,
+      address: [{
+        addressLine1,
+        addressLine2,
+        couResidence,
+        couCity,
+        postalCode
+      }]
+    });
 
-    res.redirect('/auth/login');
+    res.redirect('/auth/signin');
 
   } catch (error) {
     next(error);
   }
 })
-
-  async (req, res) => {
-    try {
-      //if there is cart session, save it to the user's cart in db
-      if (req.session.cart) {
-        const cart = await new Cart(req.session.cart);
-        cart.user = req.user._id;
-        await cart.save();
-      }
-      // redirect to the previous URL
-      if (req.session.oldUrl) {
-        const oldUrl = req.session.oldUrl;
-        req.session.oldUrl = null;
-        res.redirect(oldUrl);
-      } else {
-        res.redirect("/user/profile");
-      }
-    } catch (err) {
-      console.log(err);
-      req.flash("error", err.message);
-      return res.redirect("/");
-    }
-  };
-
+  
 // GET: display the signin form 
 
 router.get('/signin', (req, res, next) => {
@@ -126,59 +103,7 @@ router.post("/signin", async (req, res, next) => {
   } catch (error) {
     
   }
-},
-  async (req, res) => {
-    try {
-      // cart logic when the user logs in
-      const cart = await Cart.findOne({ user: req.user._id });
-      // if there is a cart session and user has no cart, save it to the user's cart in db
-      if (req.session.cart && !cart) {
-        const cart = await new Cart(req.session.cart);
-        cart.user = req.user._id;
-        await cart.save();
-      }
-      // if user has a cart in db, load it to session
-      if (cart) {
-        req.session.cart = cart;
-      }
-      // redirect to old URL before signing in
-      if (req.session.oldUrl) {
-        const oldUrl = req.session.oldUrl;
-        req.session.oldUrl = null;
-        res.redirect(oldUrl);
-      } else {
-        res.redirect("/user/profile");
-      }
-    } catch (err) {
-      console.log(err);
-      req.flash("error", err.message);
-      return res.redirect("/");
-    }
-  }
-);
+});
 
-// GET: display user's profile
-router.get("/profile", async (req, res) => {
-  const successMsg = req.flash("success")[0];
-  const errorMsg = req.flash("error")[0];
-  try {
-    // find all orders of this user
-    allOrders = await Order.find({ user: req.user });
-    res.render("user/profile", {
-      orders: allOrders,
-      errorMsg,
-      successMsg,
-      pageName: "User Profile",
-    });
-  } catch (err) {
-    console.log(err);
-    return res.redirect("/");
-  }
-});
-// GET: logout
-router.get("/logout", (req, res) => {
-  req.logout();
-  req.session.cart = null;
-  res.redirect("/");
-});
+
 module.exports = router;
