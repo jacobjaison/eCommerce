@@ -1,11 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const User = require("../models/user.model");
-const Product = require("../models/product");
-const Order = require("../models/order");
-const Cart = require("../models/cart");
-const middleware = require("../middleware");
-const updloader = require('../config/cloudinary.config');
+const User = require("../models/User.model");
+//const middleware = require("../middleware");
+//const updloader = require('../config/cloudinary.config');
 const SALT_FACTOR = 12;
 
 const router = express.Router();
@@ -19,7 +16,7 @@ router.get('/signup', (req, res, next) => {
 
 
 // POST: handle the signup logic
-router.post('/signup', updloader.single('profilePic'), async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
   const { email, password } = req.body;
   console.log(req.file);
   if(!email || !password){
@@ -83,13 +80,13 @@ router.post('/signup', updloader.single('profilePic'), async (req, res, next) =>
 
 // GET: display the signin form 
 
-router.get('/login', (req, res, next) => {
-  res.render('auth/login');
+router.get('/signin', (req, res, next) => {
+  res.render('auth/signin');
 })
 
 // POST: handle the signin logic
 
-router.post("/login", async (req, res, next) => {
+router.post("/signin", async (req, res, next) => {
   const { email, password } = req.body;
 
   if(!email || !password){
@@ -109,14 +106,14 @@ router.post("/login", async (req, res, next) => {
     const foundUser = await User.findOne({ email });
 
     if(!foundUser){
-      return res.render('auth/login', {
+      return res.render('auth/signin', {
         errorMessage: "Wrong credentials"
       })
     }
 
     const checkPassword = bcrypt.compareSync(password, foundUser.password);
     if(!checkPassword){
-      return res.render('auth/login', {
+      return res.render('auth/signin', {
         errorMessage: "Wrong credentials"
       })
     }
@@ -161,7 +158,7 @@ router.post("/login", async (req, res, next) => {
 );
 
 // GET: display user's profile
-router.get("/profile", middleware.isLoggedIn, async (req, res) => {
+router.get("/profile", async (req, res) => {
   const successMsg = req.flash("success")[0];
   const errorMsg = req.flash("error")[0];
   try {
@@ -178,14 +175,10 @@ router.get("/profile", middleware.isLoggedIn, async (req, res) => {
     return res.redirect("/");
   }
 });
-
 // GET: logout
-router.get("/logout", middleware.isLoggedIn, (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   req.session.cart = null;
   res.redirect("/");
 });
-
-
-
 module.exports = router;
