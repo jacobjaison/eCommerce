@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -14,6 +13,12 @@ h1 {
 .blockcontainer {
   border-color: grey;
   border-width: 5px;
-  border-style: solid;
+  border-style: solid outset;
+  
+  
+}
+
+.container {
+  padding: 50px;
   
 }

@@ -1,5 +1,5 @@
 {
-  "name": "eCommerceWeb",
+  "name": "ecommerceweb",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,9 +13,23 @@
     "hbs": "^4.2.0",
     "mongoose": "^6.3.4",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.7.5",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
-  }
+  },
+  "description": "eCommerce Website For the Product # Project Team - Jaison Jacob  - Elom Essan",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobjaison/eCommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacobjaison/eCommerce/issues"
+  },
+  "homepage": "https://github.com/jacobjaison/eCommerce#readme"
 }
