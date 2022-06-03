@@ -68,7 +68,7 @@ router.post("/signin", async (req, res, next) => {
 
   if(!email || !password){
     return res.render('auth/login', {
-      errorMessage: "Credentials are mondatory!"
+      errorMessage: "Credentials are mandatory!"
     })
   }
 
@@ -101,7 +101,7 @@ router.post("/signin", async (req, res, next) => {
 
     return res.redirect('/');
   } catch (error) {
-    
+    next(error)
   }
 });
 
