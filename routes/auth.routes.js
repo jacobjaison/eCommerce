@@ -38,7 +38,7 @@ router.post('/signup', upLoader.single('profilePic'), async (req, res, next) => 
       lastName,
       email,
       password: hashedPassword,
-      profilePic : req.file.path,
+      profilePic: req.file.path,
       address: [{
         addressLine1,
         addressLine2,

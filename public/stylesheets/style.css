@@ -13,12 +13,23 @@ h1 {
 .blockcontainer {
   border-color: grey;
   border-width: 5px;
-  border-style: solid outset;
-  
-  
+  border-style: solid outset;  
 }
 
 .container {
-  padding: 50px;
-  
+  padding: 50px;  
 }
+
+.search-width {
+  margin-left: 0.5rem;
+  width: 60rem;
+}
+
+.category-width {
+  width: 15rem;
+}
+
+.carousel-dimension {
+  height:30rem;
+}
+
