@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Product = require('../models/Product.model');
+const Checkout = require('../models/Checkout.model');
 
 /* GET home page */
 router.get("/", async (req, res, next) => {

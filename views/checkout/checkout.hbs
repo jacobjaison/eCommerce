@@ -4,11 +4,11 @@
         <td> Price </td>
         <td> Quantity</td>
     </tr>
-{{#each checkoutitem}}
+{{#each checkout}
 <tr>
-        <td> {{prodDesc}} </td>
-        <td> {{prodPrice}} </td>
-        <td> {{quantity}} </td>
+        <td> {{this.prodName}} </td>
+        <td> {{this.prodPrice}} </td>
+        <td> {{this.prodQuantity}} </td>
 </tr>
 
 {{/each}}
@@ -16,5 +16,4 @@
 <div id="footer">
 Total Price is {{total_price}} <br>
 
-<a href="/fetchproducts"> Click here to go back to the products page </a>
 </div>
