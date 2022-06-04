@@ -22,7 +22,7 @@ require("./config")(app);
 const capitalized = require("./utils/capitalized");
 const projectName = "eCommerceWeb";
 
-app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
+app.locals.appTitle = `Buy Products From Product Commerce`;
 
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
