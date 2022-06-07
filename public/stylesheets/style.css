@@ -33,3 +33,22 @@ h1 {
   height:30rem;
 }
 
+table#checkoutlist {
+  padding-top: 10ex;
+  width:100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  background-color: lightgray;
+  border: 1px solid darkblue; 
+  padding: 0.75em 1em;
+}
+
+tr, .totalHeader {
+  font-weight: bolder;
+  font-size: 12px;
+}
+
+
+

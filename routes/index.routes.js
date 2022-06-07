@@ -14,5 +14,7 @@ router.get("/", async (req, res, next) => {
 
 router.use('/products', require('./prod.routes'));
 router.use('/auth', require('./auth.routes'));
+router.use('/users', require('./user.routes'));
+router.use('/checkout', require('./checkout.routes'));
 
 module.exports = router;

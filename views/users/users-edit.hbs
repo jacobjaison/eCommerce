@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col blockcontainer">
+      <h1>My Account Details</h1>
+
+      <hr>
+    
+      <form action="/users/users-edit" method="POST" enctype="multipart/form-data">
+     
+       <div class="justify-content-end">
+            <img src="{{this.profilePic}}" height="250" width="250" alt="profile-img">
+       </div>
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input required type="text" class="form-control" value="{{this.firstName}}" id="firstName" name="firstName">
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input required type="text" class="form-control" value="{{this.lastName}}"id="lastName" name="lastName">
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input required type="text" class="form-control" value="{{this.email}}"id="email" name="email">
+        </div>
+
+        <div class="mb-3">
+          <label for="profilePic" class="form-label">Profile picture</label>
+          <input required type="file" class="form-control" value="{{this.profilePic}}" id="profilePic" name="profilePic">
+       
+        </div>
+
+        <div class="mb-3">
+          <label for="addressLine1" class="form-label">Address Line 1</label>
+          <input required type="text" class="form-control" value="{{this.address.[0].addressLine1}}" id="addressLine1" name="addressLine1">
+        </div>
+
+        <div class="mb-3">
+          <label for="addressLine2" class="form-label">Address Line 2</label>
+          <input required type="text" class="form-control" value="{{this.address.[0].addressLine2}}" id="addressLine2" name="addressLine2">
+        </div>
+
+        <div class="mb-3">
+          <label for="couResidence" class="form-label">Country of Residence</label>
+          <input required type="text" class="form-control" value="{{this.address.[0].couResidence}}"id="couResidence" name="couResidence">
+        </div>
+
+        <div class="mb-3">
+          <label for="couCity" class="form-label">City</label>
+          <input required type="text" class="form-control" value="{{this.address.[0].couCity}}"id="couCity" name="couCity">
+        </div>
+
+        <div class="mb-3">
+          <label for="postalCode" class="form-label">Postal Code</label>
+          <input required type="text" class="form-control" value="{{this.address.[0].postalCode}}"id="postalCode" name="postalCode">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Save</button>
+        <a href="/" class="btn btn-dark">Go back</a>
+       
+      </form>
+      <hr>
+    </div>
+  </div>
+  <div>
+    <p>
+      {{errorMessage}}
+    </p>
+  </div>
+</div>

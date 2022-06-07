@@ -27,8 +27,8 @@ const userSchema = new Schema(
       addressLine1 : String,
       addressLine2 : String,
       couResidence : String,
-      couCity: String,
-      postalCode: String
+      couCity : String,
+      postalCode : String
     }],
    
  },

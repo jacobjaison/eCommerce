@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
-const upLoader = require('../config/cloudinary.config')
+const upLoader = require('../config/cloudinary.config');
 const SALT_FACTOR = 12;
 const router = express.Router();
 // GET: display the signup form 
@@ -98,7 +98,9 @@ router.post("/signin", async (req, res, next) => {
     const objectUser = foundUser.toObject();
     delete objectUser.password;
     req.session.currentUser = objectUser;
-
+    console.log(req.session.currentUser.firstName);
+    console.log(req.session.currentUser._id);
+   // document.getElementById("displayName").innerText = "Welcome, " + req.session.currentUser.firstName;
     return res.redirect('/');
   } catch (error) {
     next(error)

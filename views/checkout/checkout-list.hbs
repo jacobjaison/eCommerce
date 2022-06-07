@@ -1,0 +1,25 @@
+<h1>Your Shopping Cart</h1>
+<table id="checkoutlist">
+    <thead>
+        <tr>
+            <td> Product Name </td>
+            <td> Price </td>
+            <td> Quantity</td>
+        </tr>
+    </thead>  
+    {{#each user_cart}}
+        {{#each this.products}}
+            <tr>
+                <td> {{this.product.prodName}} </td>
+                <td> {{this.price}} </td>
+                <td> {{this.qty}} </td>
+            </tr>
+        {{/each}}
+       
+        <tr class="totalHeader">
+                <td>Total Cost / Total Qty.</td>
+                <td> {{this.totalCost}} </td>
+                <td> {{this.totalQty}} </td>             
+        </tr>
+    {{/each}}
+</table>
