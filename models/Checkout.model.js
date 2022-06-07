@@ -6,7 +6,7 @@ const checkoutSchema = new Schema({
         product:{
         type: Schema.Types.ObjectId,
         ref: 'Product',
-    },
+      },
       qty: {
         type: Number,
         default: 0,
@@ -16,7 +16,6 @@ const checkoutSchema = new Schema({
         default: 0,
       },
     }],
-
   user: {
       type: Schema.Types.ObjectId,
       ref: 'User',

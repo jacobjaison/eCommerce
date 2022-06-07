@@ -23,8 +23,10 @@
         <div class="card-body">
             <h5 class="card-title">{{this.prodName}}</h5>
             <p class="card-text">Price : {{this.prodPrice}}</p>
-            <a href="/products/{{this.id}}/edit" class="btn btn-primary">Edit Products</a>
-            <button type="button" style="margin-right: 20px;" onclick={addToCart('{{this.id}}')} class="btn btn-primary scale">Add to Cart</button>
+           
+            <form action="/checkout/{{this._id}}"  method="POST">
+                <button type="submit" class="btn btn-dark">Add to cart</button>
+            </form>           
         </div>
     </div>
     {{/each}}
