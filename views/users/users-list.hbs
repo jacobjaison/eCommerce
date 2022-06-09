@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>User's List</h1>
+    {{#each users}}
+        <div class="user-row">
+            <a href="/users/{{this._id}}/edit">{{this.firstName}} {{this.lastName}}</a>           
+            <div class="action-links">
+                <form action="/users/{{this._id}}/edit" method="post">
+                   
+                    <input checked type="radio" id="isadmin" name="isadmin" value="true">
+                    <label for="isadmin">Is Admin</label>
+                    <input type="radio" id="regular" name="isadmin" value="false">
+                    <label for="regular">Normal account</label>
+                   
+                    <button type="submit" class="btn btn-dark"> Save</button>
+                </form>
+                <form action="/users/{{this._id}}/delete" method="post">
+                    <button type="submit" class="btn btn-warning"> Delete</button>
+                </form>
+            </div>           
+        </div>
+    {{/each}}
+</div>

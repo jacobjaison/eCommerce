@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>{{firstName}} {{lastName}} </h1>
+    <hr>
+    <div class="row">
+        <div class="col-8">
+            <h3>Details</h3>
+            <p class="label-header">First Name: <span class="lab-text">{{firstName}}</span></p>  
+            <p class="label-header">Last Name: <span class="lab-text">{{lastName}}</span></p> 
+            <p class="label-header">Email: <span class="lab-text">{{email}}</span></p>   
+            {{#each this.address}} 
+            <p class="label-header">Address Line1: <span class="lab-text">{{this.addressLine1}}</span> </p> 
+            <p class="label-header">Address Line2: <span class="lab-text">{{this.addressLine2}}</span></p> 
+            <p class="label-header">Country Residence: <span class="lab-text">{{this.couResidence}}</span></p>  
+            <p class="label-header">Country City: <span class="lab-text">{{this.couCity}}</span></p>   
+            <p class="label-header">Postal Code: <span class="lab-text">{{this.couCity}}</span></p> 
+            {{/each}}  
+        </div>
+        <div class="col-4">
+            <h3>Profile Picture</h3>
+            <img src="{{profilePic}}" width='250' height='250' alt="profile-img">           
+        </div>
+    </div>
+    <hr>
+    <a href="/">Go Back</a>
+</div>

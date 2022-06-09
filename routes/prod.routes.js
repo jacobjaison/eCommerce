@@ -69,4 +69,24 @@ router.post('/:id/edit', async (req,res,next) => {
         next (error);
     }
 })
+
+router.get('/edit', async(req,res,next) => {
+    try {
+        const products = await Product.find();
+        res.render('products/products-edlist', {products});
+    } catch (error) {
+        next (error);
+    }
+})
+
+router.get ('/:id', async (req,res, next) => {
+    try {
+       const {id} = req.params;
+       const product = await Product.findById(id); 
+       res.render ('products/product-details', product);
+    }catch (error){
+        next (error);
+    }
+})
+
 module.exports = router;

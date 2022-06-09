@@ -4,6 +4,15 @@ const upLoader = require('../config/cloudinary.config');
 const router = express.Router();
 
 // GET: display the signup form 
+router.get('/edit', async(req,res,next) => {
+  try {
+      const users = await User.find();
+      res.render('users/users-list', {users});
+  } catch (error) {
+      next (error);
+  }
+})
+
 router.get('/users-edit', async (req, res, next) => {
     try {
         const id = req.session.currentUser._id
@@ -13,6 +22,9 @@ router.get('/users-edit', async (req, res, next) => {
         next (error);
     }    
   });
+
+  
+  
 router.post('/users-edit',upLoader.single('profilePic'), async(req,res,next) => {
     try {
         const id = req.session.currentUser._id;
@@ -43,4 +55,33 @@ router.post('/users-edit',upLoader.single('profilePic'), async(req,res,next) => 
         next(error);
       }
 })
+
+router.get ('/:id/edit', async (req,res, next) => {
+  try {
+     const {id} = req.params;
+     const user = await User.findById(id); 
+     res.render ('users/user-details', user);
+  }catch (error){
+      next (error);
+  }
+})
+
+router.post('/:id/edit',async(req,res,next) => {
+  try {
+      const {id} = req.params;
+      const {isAdmin} = req.body;
+      await User.findByIdAndUpdate(id,
+          {
+              isAdmin
+          });    
+      res.redirect('/');
+  
+    } catch (error) {
+      next(error);
+    }
+})
+
+
+
+
 module.exports = router;

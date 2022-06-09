@@ -3,7 +3,7 @@ const Product = require('../models/Product.model');
 const Checkout = require('../models/Checkout.model');
 
 /* GET home page */
-router.get("/", async (req, res, next) => {
+router.get("/",async (req, res, next) => {
   try {
     const products = await Product.find();
     res.render('index', {products});

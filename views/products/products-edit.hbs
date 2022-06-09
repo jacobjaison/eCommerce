@@ -1,32 +1,38 @@
 <div class = "container">
     <div class="row justify-content-center">
         <div class="col-md-6 blockcontainer">
-            <h1>Create New Product</h1>
-            <form action="/products/{{this._id}}/edit"  method="POST">
+            <h1>Update Product</h1>
+            <form action="/products/{{_id}}/edit"  method="POST">
                 <div class="mb-3">
                     <label for="prodName" class="form-label">Product Name </label>
-                    <input required type="text" class="form-control" id="prodName" value ="{{this.prodName}}" name="prodName">
+                    <input required type="text" class="form-control" id="prodName" name="prodName" value = "{{prodName}}">
                 </div>
+
                 <div class="mb-3">
                     <label for="prodDesc" class="form-label">Description:</label>
-                    <input type="text" class="form-control" id="prodDesc" value = "{{this.prodDesc}}" name="prodDesc">
+                    <input type="text" class="form-control" id="prodDesc" name="prodDesc" value = "{{prodDesc}}">
                 </div>
+
                 <div class="mb-3">
                     <label for="prodCategory" class="form-label">Product Category:</label>
-                    <input type="text" class="form-control" id="prodCategory" value = "{{this.prodCategory}}" name="prodCategory">
+                    <input type="text" class="form-control" id="prodCategory" name="prodCategory" value = "{{prodCategory}}">
                 </div>
+
                 <div class="mb-3">
                     <label for="prodImage" class="form-label">Image:</label>
-                    <input type="text" class="form-control" id="prodImage" value = "{{this.prodImage}}" name="prodImage">
+                    <input type="text" class="form-control" id="prodImage" name="prodImage" value = "{{prodImage}}">
                 </div>
+
                 <div class="mb-3">
                     <label for="prodPrice" class="form-label">Product Price</label>
-                    <input type="Number" class="form-control" id="prodPrice" value = "{{this.prodPrice}}" name="prodPrice">
+                    <input type="Number" class="form-control" id="prodPrice" name="prodPrice" value = "{{prodPrice}}">
                 </div>
+
                 <div class="mb-3">
                     <label for="prodStock" class="form-label">Product Stock</label>
-                    <input type="Number" class="form-control" id="prodStock" value = "{{this.prodStock}}" name="prodStock">
+                    <input type="Number" class="form-control" id="prodStock" name="prodStock" value = "{{prodStock}}">
                 </div>
+
                 <button type="submit" class="btn btn-dark">Save</button>
                 <a href="/" class="btn btn-dark">Go back</a>
             </form>

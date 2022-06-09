@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Product's List</h1>
+    {{#each products}}
+        <div class="product-row">
+            <a href="/products/{{this._id}}">{{this.prodName}}"</a>
+            <div class="action-links">
+                <a href="/products/{{this._id}}/edit" class="btn btn-dark">Edit</a>
+                <form action="/products/{{this._id}}/delete"  method="post">
+                    <button type ="submit"class="btn btn-warning"> Delete</button>
+                </form>
+            </div>           
+        </div>
+    {{/each}}
+</div>

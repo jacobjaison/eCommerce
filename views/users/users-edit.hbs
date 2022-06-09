@@ -1,15 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col blockcontainer">
+    <div class="col-8">
       <h1>My Account Details</h1>
-
-      <hr>
-    
+      <hr>    
       <form action="/users/users-edit" method="POST" enctype="multipart/form-data">
-     
-       <div class="justify-content-end">
-            <img src="{{this.profilePic}}" height="250" width="250" alt="profile-img">
-       </div>
         <div class="mb-3">
           <label for="firstName" class="form-label">First Name</label>
           <input required type="text" class="form-control" value="{{this.firstName}}" id="firstName" name="firstName">
@@ -62,6 +56,11 @@
       </form>
       <hr>
     </div>
+    <div class="col-4">
+      <br><br>
+       <img src="{{this.profilePic}}" height="250" width="250" alt="profile-img"> 
+       <h4>{{this.firstName}} {{this.lastName}}</h4>        
+     </div>
   </div>
   <div>
     <p>

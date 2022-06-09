@@ -2,8 +2,21 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User.model");
 const upLoader = require('../config/cloudinary.config');
+const isLoggedIn = require("../middlewares/isLoggedIn");
 const SALT_FACTOR = 12;
 const router = express.Router();
+
+router.get("/logout", (req, res) => {
+	req.session.destroy((err) => {
+		if (err) {
+			return res.render("auth/logout", {
+				errorMessage: err.message,
+			})
+		}
+		res.redirect("/")
+	})
+})
+
 // GET: display the signup form 
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup');
@@ -100,6 +113,7 @@ router.post("/signin", async (req, res, next) => {
     req.session.currentUser = objectUser;
     console.log(req.session.currentUser.firstName);
     console.log(req.session.currentUser._id);
+    
    // document.getElementById("displayName").innerText = "Welcome, " + req.session.currentUser.firstName;
     return res.redirect('/');
   } catch (error) {

@@ -30,7 +30,7 @@ const userSchema = new Schema(
       couCity : String,
       postalCode : String
     }],
-   
+    isAdmin: Boolean,   
  },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
