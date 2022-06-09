@@ -80,14 +80,14 @@ router.post("/signin", async (req, res, next) => {
   const { email, password } = req.body;
 
   if(!email || !password){
-    return res.render('auth/login', {
+    return res.render('auth/signin', {
       errorMessage: "Credentials are mandatory!"
     })
   }
 
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
   if(!regex.test(password)){
-    return res.render('auth/login', {
+    return res.render('auth/signin', {
       errorMessage: "Password needs to have 8 char, including lower/upper case and a digit"
     })
   }
