@@ -1,4 +1,5 @@
 const Product = require('../models/Product.model');
+const Category = require('../models/Category.model');
 const router = require('express').Router();
 
 router.get('/create', async (req, res, next) => {
@@ -20,7 +21,7 @@ router.post('/create', async (req,res,next) => {
             prodPrice,
             prodStock,
         });
-        res.redirect('/');
+        res.redirect('/products/products-list');
     } catch (error) {
         next (error)
     }
@@ -30,7 +31,18 @@ router.post('/create', async (req,res,next) => {
 router.get('/', async(req,res,next) => {
     try {
         const products = await Product.find();
-        res.render('products/products-list', {products});
+        const categories = await Category.find();
+        res.render('products/products-list', {products,categories});
+    } catch (error) {
+        next (error);
+    }
+})
+
+router.get('/products-list', async(req,res,next) => {
+    try {
+        const products = await Product.find();
+        const categories = await Category.find();
+        res.render('products/products-list', {products,categories});
     } catch (error) {
         next (error);
     }
@@ -64,7 +76,7 @@ router.post('/:id/edit', async (req,res,next) => {
             {
                 new:true
             })
-        res.redirect("/products")
+        res.redirect("/products/products-list")
     } catch (error) {
         next (error);
     }
@@ -86,6 +98,17 @@ router.get ('/:id', async (req,res, next) => {
        res.render ('products/product-details', product);
     }catch (error){
         next (error);
+    }
+})
+
+router.post('/:id/delete', async (req,res,next) =>{
+    try {
+        const {id} = req.params;
+        await Product.findByIdAndDelete(id);
+
+        res.redirect('/products/product-list')
+    } catch (error) {
+        next(error);
     }
 })
 

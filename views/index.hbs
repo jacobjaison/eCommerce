@@ -5,47 +5,79 @@
     <form class="d-flex" role="search">    
         <select class="form-select category-width" aria-label="Default select example">
             <option selected>Category</option>
-            <option value="1">Digital Camera</option>
-            <option value="2">Mobile Phones</option>
-            <option value="3">Television</option>
+            {{#each categories}}
+            <option value="{{catName}}">{{catName}}</option>
+            {{/each}}
         </select>
-        <input class="form-control me-2 search-width" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    
+        <input class="form-control me-2 search-width" name="prodSearch" type="search" placeholder="Search" aria-label="Search">
+         <button class="btn btn-outline-success" type="submit">Search</button>
+      
     </form>
   </div>
 </nav>
-
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner" data-bs-interval="1000">
-    <div class="carousel-item active">
-      <img src="../images/printers.jpeg" class="d-block w-100 carousel-dimension" alt="...">
-    </div>
-    <div class="carousel-item" data-bs-interval="3000">
-      <img src="../images/HeadPhones.jpeg"  class="d-block w-100 carousel-dimension" alt="...">
-    </div>
-    <div class="carousel-item" data-bs-interval="3000">
-      <img src="../images/MobilePhones.jpeg"  class="d-block w-100 carousel-dimension" alt="...">
+<div class="carousel-align">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" data-bs-interval="1000">
+      <div class="carousel-item active">
+        <img src="../images/printers.jpeg" class="d-block w-70 carousel-dimension" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="../images/HeadPhones.jpeg" class="d-block w-70 carousel-dimension" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="../images/laptops.jpeg" class="d-block w-70 carousel-dimension" alt="...">
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" data-bs-interval="1000">
+      <div class="carousel-item active" data-bs-interval="3000">
+        <img src="../images/VR.jpeg" class="d-block w-70 carousel-dimension" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="../images/sony.jpeg" class="d-block w-70 carousel-dimension" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="3000">
+        <img src="../images/electronics-accessories.jpeg" class="d-block w-70 carousel-dimension" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>
+  
 <hr>
 <div class="row">
     {{#each products}}
     <div class="card col-3" style="width: 18rem;">
-        <img src="{{this.prodImage}}" class="card-img-top" alt="...">
+        <img src="{{this.prodImage}}" height="250" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{this.prodName}}</h5>
-            <p class="card-text">Price : {{this.prodPrice}}</p>
-            <a href="/products/{{this.id}}/edit" class="btn btn-primary">View Details</a>
+            <p class="card-text">Price :${{this.prodPrice}}</p>
+            <div class="button1-width">
+              <a href="/products/{{this.id}}" class="btn btn-primary">View Details</a>
+              <hr>
+              <form action="/checkout/{{this._id}}" method="POST">
+                <button type="submit" class="btn btn-dark">Add to cart</button>
+              </form>
+            </div>
+           
         </div>
     </div>
     {{/each}}

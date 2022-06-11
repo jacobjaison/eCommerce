@@ -1,0 +1,22 @@
+<div class = "container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 blockcontainer">
+            <h1>Update Category</h1>
+            <form action="/category/{{_id}}/edit"  method="POST">
+                <div class="mb-3">
+                    <label for="catName" class="form-label">Category Name </label>
+                    <input required type="text" class="form-control" id="catName" name="catName" value = "{{catName}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="catDesc" class="form-label">Description:</label>
+                    <input type="text" class="form-control" id="catDesc" name="catDesc" value = "{{catDesc}}">
+                </div>
+
+                <button type="submit" class="btn btn-dark">Save</button>
+                <a href="/" class="btn btn-dark">Go back</a>
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>
