@@ -40,16 +40,19 @@ table#checkoutlist {
 }
 
 td, th {
-  background-color: lightgray;
-  border: 1px solid darkblue; 
+  border: 1px dotted black; 
   padding: 0.75em 1em;
 }
 
-tr, .totalHeader {
+tr {
   font-weight: bolder;
   font-size: 12px;
 }
 
+.tr-header {
+  color: blue;
+  background-color: lightgrey;
+}
 .product-row {
   display : flex;
   padding : 10px;
@@ -102,6 +105,19 @@ tr, .totalHeader {
   align-items: center;
   align-items: center;
   flex-direction: row;
+}
+.checkout-button {
+  display:flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  border-color: black;
+  border-width: 1px;
+  border-style: dotted; 
+  
+}
+
+.checkout-button:hover {
+  color: blue;
 }
 
 

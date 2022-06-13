@@ -15,6 +15,10 @@ const checkoutSchema = new Schema({
         type: Number,
         default: 0,
       },
+      totlineCost: {
+        type: Number,
+        default:0
+      },
     }],
   user: {
       type: Schema.Types.ObjectId,

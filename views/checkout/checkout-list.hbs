@@ -1,29 +1,42 @@
 <h1>Your Shopping Cart</h1>
-<table id="checkoutlist">
-    <thead>
-        <tr>
-            <td> Product Name </td>
-            <td> Price </td>
-            <td> Quantity</td>
-        </tr>
-    </thead>  
+<table id="checkoutlist">   
     {{#each user_cart}}
-        {{#each this.products}}
-            <tr>
-                <td> {{this.product.prodName}} </td>
-                <td> {{this.price}} </td>
-                <td> {{this.qty}} </td>
-            </tr>
-        {{/each}}
-       
-        <tr class="totalHeader">
-                <td>Total Cost / Total Qty.</td>
-                <td> {{this.totalCost}} </td>
-                <td> {{this.totalQty}} </td>             
+    <thead>   
+        <tr>
+            <td>Order Status :</td>
+            {{#if (this.orderCompleted)}}
+            <td>Completed</td>
+            {{else}}
+            <td>Pending</td>
+            {{/if}}
+        </tr>
+        <tr class="tr-header">
+            <td> Product Name </td>
+            <td> Unit Price ($) </td>
+            <td> Quantity</td>
+            <td> Total Value ($)</td>
+        </tr>
+    </thead>
+    {{#each this.products}}
+    <tr>
+        <td> {{this.product.prodName}} </td>
+        <td> {{this.price}} </td>
+        <td> {{this.qty}} </td>
+        <td> {{this.totlineCost}}</td>
+    </tr>
+    {{/each}}       
+        <tr class="tr-header">
+            <td>Total</td>
+            <td> </td>
+            <td> {{this.totalQty}} </td>
+            <td> {{this.totalCost}} </td>
+        
         </tr>
     {{/each}}
 </table>
 <hr>
-<form action="/checkout/pay" method="POST">
+<a href="/checkout/checkout-initiate" class="checkout-button btn btn-dark">Checkout</a>
+
+<!-- <form action="/checkout/pay" class="checkout-button" method="POST">
 <button type="submit" class="btn btn-dark">Checkout</button>
-</form>
+</form> -->

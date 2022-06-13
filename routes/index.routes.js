@@ -17,8 +17,15 @@ router.get("/",async (req, res, next) => {
 /* GET home page */
 router.post("/search",async (req, res, next) => {
   try {
-    const products = await Product.find({prodDesc:req.body.prodSearch});
-    console.log(req.body.prodSearch);
+    const {prodSearch,prodCategory} = req.body;
+    let products;
+    console.log(prodCategory);
+    if (prodSearch || prodCategory){
+      products = await Product.find({$text:{$search:prodSearch||prodCategory}});
+    }
+    else {
+      products = await Product.find();
+    }    
     const categories = await Category.find();
     res.render('index', {products,categories});
   } catch (error) {
